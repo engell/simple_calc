@@ -1,80 +1,61 @@
-$(function() {
-    var number = 0;
-    var numberstring ="";
-    var char;
-    var timer=0;
-    $('.button').on('mouseover', function() {
-        $(this).css({background: '#1e1e1e'});
+var number = 0;
+var numberstring ="";
+var timer = Date.now();
 
-        $(this).click(function() {
-            //$('.head').append($(this).attr("id"));
-            if (timer==1)
+$(function() 
+{    
+    $('.button').on('mouseover', function() 
+    {
+        $(this).css({background: '#1e1e1e'});
+        $(this).on('click', function()
+        {
+            var keypressed = $(this).text();
+            keyclick(keypressed);
+        });
+
+    });
+    $('.button').on('mouseleave', function() 
+    {
+        $(this).css({background: '#444'});
+    });
+});
+
+function keyclick(char)
+{
+    if (Date.now() < timer + 100)
+    {
+        return false;
+    }
+    else
+    {
+        if (isNaN(parseInt(char)))
+        {
+            console.log(char);
+        }
+        else
+        {
+            //console.log(char);
+
+            if (number==0)
             {
-                return false;
+                numberstring = char;
             }
             else
             {
-                char=$(this).text();
-                if (isNaN(parseInt(char)))
-                {
-                    console.log(char);
-                }
-                else
-                {
-                    //console.log(char);
-
-                    if (number==0)
-                    {
-                        numberstring = char;
-                    }
-                    else
-                    {
-                        numberstring = numberstring + char;
-                    }
-                    
-                    char = 0;
-                    $('.head').html(numberstring);
-                    
-
-                }
-                console.log(number);
-                number++;
-                console.log(numberstring);
-                console.log(timer)
-
-                timer=1;
-                
-                    
-                    for (i = 0; i < 2000; i++) 
-                    {
-                        //console.log(i);
-                    }
-                    timer=0;
-                    console.log("Timer="+timer);
-                
+                numberstring = numberstring + char;
             }
             
-        });
-
-         /*$(this).one('click', function (event) {  
-            event.preventDefault();
+            //char = 0;
+            $('.head').html(numberstring);
             
-            $('.head').append($(this).text());
 
-            //$(this).prop('disabled', true);
-            }); */
-
-
-      })
-      $('.button').on('mouseleave', function() {
-          $(this).css({background: '#444'});
-      });
-});
-
-/*
-function reply_click(clicked_id){
-    //alert(clicked_id);
-    $('.head').append(clicked_id);
+        }
+        console.log(number);
+        number++;
+        //console.log(numberstring);
+        timer = Date.now();
+        
+        
+        
+    }
 }
-*/
-
