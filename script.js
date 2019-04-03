@@ -1,6 +1,9 @@
 var number = 0;
 var numberstring ="";
 var timer = Date.now();
+var firstfactor;
+var secondfactor;
+var equation;
 
 $(function() 
 {    
@@ -31,31 +34,82 @@ function keyclick(char)
         if (isNaN(parseInt(char)))
         {
             console.log(char);
-        }
-        else
-        {
-            //console.log(char);
-
-            if (number==0)
+            if (char=="ce")
             {
-                numberstring = char;
+                clear();
+            }
+            if (char==".")
+            {
+                append(char);
+            }
+            if (char=="=")
+            {
+                result();
             }
             else
             {
-                numberstring = numberstring + char;
+                calc(char);
             }
-            
-            //char = 0;
-            $('.head').html(numberstring);
-            
-
+        }
+        else
+        {
+            append(char);
         }
         console.log(number);
-        number++;
-        //console.log(numberstring);
         timer = Date.now();
-        
-        
-        
     }
 }
+
+function append(num)
+{
+    if (number==0)
+    {
+        numberstring = num;
+    }
+    else
+    {
+        numberstring = numberstring + num;
+    }
+    $('.head').html(numberstring);
+    number++;
+}
+
+function clear()
+{
+    number = 0;
+    numberstring = 0;
+    $('.head').html(numberstring);
+}
+
+function calc(t)
+{   
+    firstfactor = parseFloat(numberstring);
+    equation = t;
+    //console.log(firstfactor);
+    //result();
+    clear();
+}
+
+function result()
+{
+    secondfactor = parseFloat(numberstring);
+    clear();
+    if (equation == "+")
+    {
+        numberstring = firstfactor + secondfactor;
+    }
+    if (equation == "-")
+    {
+        numberstring = firstfactor - secondfactor;
+    }
+    if (equation == "*")
+    {
+        numberstring = firstfactor * secondfactor;
+    }
+    if (equation == "/")
+    {
+        numberstring = firstfactor / secondfactor;
+    }
+    $('.head').html(numberstring);
+}
+
