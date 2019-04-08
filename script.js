@@ -1,13 +1,13 @@
 var number = 0;
-var numberstring ="";
+var numberstring = "";
 var timer = Date.now();
 var firstfactor;
 var secondfactor;
 var equation;
 
-$(function() 
-{    
-    $('.button').on('mouseover', function() 
+$(function()
+{
+    $('.button').on('mouseover', function()
     {
         $(this).css({background: '#1e1e1e'});
         $(this).on('click', function()
@@ -17,7 +17,7 @@ $(function()
         });
 
     });
-    $('.button').on('mouseleave', function() 
+    $('.button').on('mouseleave', function()
     {
         $(this).css({background: '#444'});
     });
@@ -64,12 +64,23 @@ function append(num)
 {
     if (number==0)
     {
-        numberstring = num;
+        //numberstring = num;
+        
+        if (String(num) == "0")
+        {
+            numberstring = "0";
+            number = -1;
+        }
+        else
+        {
+            numberstring = String(num);
+        }
     }
     else
     {
-        numberstring = numberstring + num;
+        numberstring = numberstring + String(num);
     }
+    console.log(num);
     $('.head').html(numberstring);
     number++;
 }
@@ -82,7 +93,7 @@ function clear()
 }
 
 function calc(t)
-{   
+{
     firstfactor = parseFloat(numberstring);
     equation = t;
     //console.log(firstfactor);
@@ -110,6 +121,9 @@ function result()
     {
         numberstring = firstfactor / secondfactor;
     }
+    firstfactor = 0;
+    secondfactor = 0;
+    equation = 0;
+    number = 0;
     $('.head').html(numberstring);
 }
-
