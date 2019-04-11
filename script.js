@@ -55,34 +55,53 @@ function keyclick(char)
         {
             append(char);
         }
-        console.log(number);
         timer = Date.now();
     }
 }
 
 function append(num)
 {
-    if (number==0)
+    /*if (num==0)
     {
-        //numberstring = num;
-        
+        numberstring = num;
+        /*
         if (String(num) == "0")
         {
             numberstring = "0";
-            number = -1;
+            number = number - 1;
         }
         else
         {
             numberstring = String(num);
+            console.log("punto");
         }
     }
     else
     {
         numberstring = numberstring + String(num);
+        
+    }*/
+    //
+
+    if (isNaN(parseFloat(numberstring)))
+    {
+        numberstring = "0";
+        parseFloat(numberstring);
     }
-    console.log(num);
-    $('.head').html(numberstring);
-    number++;
+    else
+    {
+        numberstring = $('.head').text();
+        //numberstring = String(numberstring);
+        numberstring = numberstring + String(num);
+        //parseFloat(numberstring);
+        number = parseFloat(numberstring);
+        $('.head').html(number);
+        
+        console.log(number);
+    }
+
+
+    
 }
 
 function clear()
@@ -94,7 +113,7 @@ function clear()
 
 function calc(t)
 {
-    firstfactor = parseFloat(numberstring);
+    firstfactor = parseFloat(number);
     equation = t;
     //console.log(firstfactor);
     //result();
@@ -103,27 +122,27 @@ function calc(t)
 
 function result()
 {
-    secondfactor = parseFloat(numberstring);
+    secondfactor = parseFloat(number);
     clear();
     if (equation == "+")
     {
-        numberstring = firstfactor + secondfactor;
+        number = firstfactor + secondfactor;
     }
     if (equation == "-")
     {
-        numberstring = firstfactor - secondfactor;
+        number = firstfactor - secondfactor;
     }
     if (equation == "*")
     {
-        numberstring = firstfactor * secondfactor;
+        number = firstfactor * secondfactor;
     }
     if (equation == "/")
     {
-        numberstring = firstfactor / secondfactor;
+        number = firstfactor / secondfactor;
     }
     firstfactor = 0;
     secondfactor = 0;
     equation = 0;
     number = 0;
-    $('.head').html(numberstring);
+    $('.head').html(number);
 }
