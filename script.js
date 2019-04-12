@@ -1,5 +1,5 @@
 var number = 0;
-var numberstring = "";
+var numberstring = "0";
 var timer = Date.now();
 var firstfactor;
 var secondfactor;
@@ -85,35 +85,35 @@ function append(num)
 
     if (isNaN(parseFloat(numberstring)))
     {
+        console.log("esto no se va a ver nunca!!!");
         numberstring = "0";
-        parseFloat(numberstring);
+        number = parseFloat(numberstring);
     }
     else
     {
-        numberstring = $('.head').text();
+        //numberstring = $('.head').text();
         //numberstring = String(numberstring);
         numberstring = numberstring + String(num);
         //parseFloat(numberstring);
         number = parseFloat(numberstring);
-        $('.head').html(number);
-        
-        console.log(number);
     }
 
 
+    $('.head').html(numberstring);
+    console.log(number);
     
 }
 
 function clear()
 {
     number = 0;
-    numberstring = 0;
-    $('.head').html(numberstring);
+    numberstring = "0";
+    $('.head').html(number);
 }
 
 function calc(t)
 {
-    firstfactor = parseFloat(number);
+    firstfactor = parseFloat(numberstring);
     equation = t;
     //console.log(firstfactor);
     //result();
@@ -122,27 +122,27 @@ function calc(t)
 
 function result()
 {
-    secondfactor = parseFloat(number);
+    secondfactor = parseFloat(numberstring);
     clear();
     if (equation == "+")
     {
-        number = firstfactor + secondfactor;
+        numberstring = firstfactor + secondfactor;
     }
     if (equation == "-")
     {
-        number = firstfactor - secondfactor;
+        numberstring = firstfactor - secondfactor;
     }
     if (equation == "*")
     {
-        number = firstfactor * secondfactor;
+        numberstring = firstfactor * secondfactor;
     }
     if (equation == "/")
     {
-        number = firstfactor / secondfactor;
+        numberstring = firstfactor / secondfactor;
     }
     firstfactor = 0;
     secondfactor = 0;
     equation = 0;
     number = 0;
-    $('.head').html(number);
+    $('.head').html(numberstring);
 }
